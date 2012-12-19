@@ -1,0 +1,39 @@
+{% load compress %}
+!!! 5
+html
+    head
+        {% compress css %}
+        link(rel='stylesheet', type='text/css', href='#{STATIC_URL}stylesheets/foundation.css')
+        link(rel='stylesheet', type='text/css', href='#{STATIC_URL}stylesheets/app.css')
+        link(rel='icon', href='#{STATIC_URL}favicon.ico')
+        script(src="#{STATIC_URL}javascripts/modernizr.foundation.js")
+
+        //if lt IE 9
+          link(rel='stylesheet', href='stylesheets/ie.css')
+
+        // IE Fix for HTML5 Tags 
+        //if lt IE 9
+          script(src='http://html5shiv.googlecode.com/svn/trunk/html5.js')
+
+        {% endcompress %}
+        title
+            block title
+                #{title}
+    body
+        block header
+          .container
+            .row
+              .twelve.columns.title
+                a(href="/")
+                    | //mathisonian
+                block post-header
+        block content
+        block pre-footer
+        block footer
+            //- {% compress js %}
+            script(src="#{STATIC_URL}javascripts/jquery.min.js")
+            script(src="#{STATIC_URL}javascripts/slides.min.jquery.js")
+            script(src="#{STATIC_URL}javascripts/foundation.min.js")
+            script(src='#{STATIC_URL}javascripts/app.js')
+            //- {% endcompress %}
+        block post-footer

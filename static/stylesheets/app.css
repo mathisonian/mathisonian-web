@@ -1,0 +1,236 @@
+/* Foundation v2.2.1 http://foundation.zurb.com */
+/* Artfully masterminded by ZURB  */
+
+/* -------------------------------------------------- 
+   Table of Contents
+-----------------------------------------------------
+:: Shared Styles
+:: Page Name 1
+:: Page Name 2
+*/
+
+
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+@font-face {
+  font-family: subtle-light;
+  src: url('./fonts/SubtleSansLight.eot');
+  src: local('☺'),
+    url("./fonts/SubtleSansLight.woff") format("woff"),
+    url("./fonts/SubtleSansLight.otf") format("opentype"),
+    url("./fonts/SubtleSansLight.svg") format("svg");
+  }  
+@media screen and (max-device-width: 480px) {
+  @font-face {
+    font-family: subtle-light;
+    src: 
+    url("./fonts/SubtleSansLight.woff") format("woff"),
+    url("./fonts/SubtleSansLight.otf") format("opentype"),
+    url("./fonts/SubtleSansLight.svg") format("svg");
+}}
+@font-face {
+  font-family: subtle-sans;
+  src: url('./fonts/SubtleSansRegular.eot');
+  src: local('☺'),
+    url("./fonts/SubtleSansRegular.woff") format("woff"),
+    url("./fonts/SubtleSansRegular.otf") format("opentype"),
+    url("./fonts/SubtleSansRegular.svg") format("svg");
+  }  
+@media screen and (max-device-width: 480px) {
+  @font-face {
+    font-family: subtle-sans;
+    src: 
+    url("./fonts/SubtleSansRegular.woff") format("woff"),
+    url("./fonts/SubtleSansRegular.otf") format("opentype"),
+    url("./fonts/SubtleSansRegular.svg") format("svg");
+}}
+
+
+@font-face {
+  font-family: 'PT Mono';
+  src: url('./fonts/ptm55ft.eot');
+  src: local('☺'),
+    url("./fonts/ptm55ft.woff") format("woff"),
+    url("./fonts/ptm55ft.otf") format("opentype"),
+    url("./fonts/ptm55ft.ttf") format("truetype"),
+    url("./fonts/ptm55ft.svg") format("svg");
+  }  
+@media screen and (max-device-width: 480px) {
+  @font-face {
+    font-family: "PT Mono";
+    src: url("./fonts/ptm55ft.woff") format("woff"),
+    url("./fonts/ptm55ft.otf") format("opentype"),
+    url("./fonts/ptm55ft.ttf") format("truetype"),
+    url("./fonts/ptm55ft.svg") format("svg");
+}}
+
+html, body {
+	height: 100%;
+	background-image: url('../images/bg.png');
+}
+
+.title {
+	margin-top: 80px;
+}
+
+
+.title > a {
+	color : white;
+	font-size: 30px;
+	line-height : 35px;
+	background-color: fuchsia;
+	padding: 5px;
+	font-family: 'PT Mono', sans-serif;
+	padding-right:0px;
+	padding-left:0px;
+	margin-right:0px;
+	margin-left:0px;
+}
+
+.title > a:hover {
+	background-color: blue;
+}
+
+.navigation {
+	z-index : 20;
+}
+.slides_container {
+	margin-top : 60px;
+	width:750px;
+	height : 350px;
+/*	z-index : -99;*/
+}
+.slides_container div {
+	width:750px;
+	height : 350px;
+	display:block;
+/*	z-index : -99;*/
+}
+
+.glyph {
+	opacity : .3;
+	filter:alpha(opacity=30); /* For IE8 and earlier */
+}
+
+.glyph:hover {
+/*	background-color : fuchsia;*/
+	opacity : .6;
+}
+/*
+.content {
+	margin-top: 140px;
+}*/
+
+#featured .content {
+	background-image : url("../images/space.jpg");
+	color : white;
+}
+
+.navigation {
+	margin-top: 70px;
+	margin-bottom: 40px;
+}
+
+.nav {
+	margin-bottom: 35px;
+}
+
+.nav > a {
+	color : white;
+	font-size: 20px;
+	background-color: fuchsia;
+	padding: 5px;
+	font-family: 'PT Mono', sans-serif;
+}
+
+.nav > a:hover {
+	background-color: blue;
+}
+
+.welcome {
+	margin-top : 30px;
+	font-family : subtle-light, sans-serif;
+	font-size : 32px;
+	line-height : 36px;
+}
+
+.slide {
+	font-family : subtle-light, sans-serif;
+	font-size : 32px;
+	line-height : 36px;
+/*	background-color : blue;*/
+/*	color : white;*/
+}
+
+.welcome > h3 {
+	font-size : 45px;
+	line-height : 47px;
+	font-family : subtle-light, sans-serif;
+}
+
+.slide > h3 {
+	font-size : 45px;
+	line-height : 47px;
+	font-family : subtle-light, sans-serif;
+/*	background-color : blue;*/
+/*	color : white;*/
+}
+/*
+.container.show-on-desktops {
+	margin-left: 7%;
+	margin-right: 7%;
+	height : 100%;
+	z-index: 99;
+	background-color: white;
+	border-left-color: black;
+	border-left-style: dashed;
+	border-left-width: 1px;
+	border-right-color: black;
+	border-right-style: dashed;
+	border-right-width: 1px;
+}
+
+.bg {
+	z-index: -1;
+	width : 100%;
+	height : 100%;
+	background-image: url('../../bg.png');
+}
+
+*//* -----------------------------------------
+   Portfolio
+----------------------------------------- */
+
+.portfolio-container {
+	margin-top : 60px;
+	font-family : subtle-light, sans-serif;
+}
+
+.description {
+	font-family : subtle-sans, sans-serif;
+}
+
+.portfolio-pic {	
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
+}
+.bio-pic {	
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.professional .description {
+	border-left : black solid 1px;
+}
+
+
+/* -----------------------------------------
+   Page Name 2
+----------------------------------------- */
+
+

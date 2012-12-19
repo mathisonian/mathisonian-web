@@ -1,0 +1,25 @@
+extends base
+
+block content
+  .row.content
+    .ten.columns
+      .row.hide-on-phones
+        #slides
+          .slides_container
+            .slide
+              h3
+                | Welcome, friend
+              br
+              | This is the website of
+              a(href="/about")
+                | Matthew Conlen
+              br
+              | software developer and designer
+              br
+              br
+              | Feel free to look around or
+              a(href="mailto:web@mathisonian.com")
+                 | contact me
+              | with freelance inquiries.
+
+    include navigation
