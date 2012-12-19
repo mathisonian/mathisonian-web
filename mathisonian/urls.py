@@ -6,8 +6,9 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'', include('mathisonian.base.urls')),
-    # url(r'^blog/', include('mathisonian.blog.urls')),
-    # url(r'^portfolio/', include('mathisonian.project.urls')),
+    url(r'^weblog/', include('mathisonian.blog.urls')),
+    url(r'^portfolio/', include('mathisonian.project.urls')),
+    url(r'', include('mathisonian.page.urls')),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

@@ -1,0 +1,30 @@
+extends base
+
+block post-header
+  a(href="")
+    |/weblog
+
+block content
+  .row.content
+    .ten.columns
+      .row.portfolio-container
+        .twelve.columns
+          - for blog in blogs
+            .row
+              .two.columns
+                a(href="#{project.url}", target="_blank")
+                  img(src='#{project.img}').portfolio-pic
+              .eight.columns.offset-by-one
+                h3
+                  a(href="#{project.url}", target="_blank")
+                    #{project.title}
+                h5
+                  | #{project.start_time}
+                  - if project.end_time
+                    | - #{project.end_time}
+                p.description
+                  !{project.description|safe}
+              .one.columns
+            hr
+
+    include navigation

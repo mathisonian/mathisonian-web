@@ -1,0 +1,38 @@
+extends base
+
+block post-header
+  a(href="")
+    |/about
+
+block content
+  .row.content
+    .ten.columns
+      .row.portfolio-container
+        .twelve.columns
+          .row
+            .four.columns
+              img(src="http://www.mathisonian.com/images/me.png").bio-pic
+            .eight.columns
+              h3
+                | Matthew Conlen
+              h5
+                | Location: Brooklyn, NY
+              p.description
+                | Matthew Conlen is a recent graduate from the University of 
+                | Michigan with degrees in mathematics and computer science; he 
+                | is currently living in new york and preoccupied with trying to 
+                | create interesting things; unfortunately, in this case 
+                | the metric of "interestingness" is 
+                | quite 
+                | ill defined; he is heading up a collective of 
+                | technologists known as 
+                a(href="http://www.labcur.io")
+                  | lab curio
+                | that he hopes will sate 
+                | this need to some end; he would always like to hear from you, so 
+                | don't be shy with that 
+                a(href="mailto:about@mathisonian.com")
+                  | contact 
+                | link
+
+    include navigation
