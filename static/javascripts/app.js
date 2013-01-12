@@ -3,6 +3,8 @@ jQuery(document).ready(function ($) {
 
 
     $("#slides").slides();
+
+    $('#redactor_content').redactor({minHeight: 100, source: false});
 	
 	/* Use this js doc for all application specific JS */
 

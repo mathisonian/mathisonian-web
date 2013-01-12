@@ -1,0 +1,16 @@
+extends base
+
+block post-header
+  a(href="")
+    |/weblog
+
+block content
+  .row.content
+    .ten.columns
+      .row.portfolio-container
+        .twelve.columns
+          - for post in posts
+            include post_short
+            hr
+
+    include navigation

@@ -1,0 +1,15 @@
+extends base
+
+block post-header
+  a(href="/weblog") /weblog
+  a(href="")
+    | /#{post.title|truncatechars:10}
+
+block content
+  .row.content
+    .ten.columns
+      .row.portfolio-container
+        .twelve.columns
+          include post_full
+
+    include navigation

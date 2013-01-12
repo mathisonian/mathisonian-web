@@ -1,0 +1,31 @@
+extends base
+
+{% load widget_tweaks %}
+
+block post-header
+  a(href="/weblog") /weblog
+  a(href="/weblog/create")
+    |/create
+
+block content
+  .row.content
+    .ten.columns
+      .row.portfolio-container
+        .eight.columns
+          form(method="post", action="").create-post.nice
+            {% csrf_token %}
+            label
+              | Title:
+            #{form.title|add_class:"create-title"}
+            label
+              | Content:
+            #{form.content|attr:"id:redactor_content"}
+            br
+            label
+              | Password:
+            input(type="text", name="pw", id="pw")
+            br
+            .submit(style="padding-top: 20px;")
+              input(type="submit", value="submit").button
+
+    include navigation

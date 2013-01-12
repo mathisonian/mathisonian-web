@@ -8,3 +8,4 @@ class Project(models.Model):
     end_time = models.CharField(max_length=100, null=True, blank=True)
     title = models.CharField(max_length=300)
     img = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
