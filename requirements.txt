@@ -26,3 +26,4 @@ pytz==2012g
 wsgiref==0.1.2
 psycopg2==2.4.5
 dj-database-url==0.2.0
+gunicorn==0.16.1
