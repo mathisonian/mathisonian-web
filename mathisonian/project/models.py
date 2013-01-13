@@ -7,5 +7,5 @@ class Project(models.Model):
     start_time = models.CharField(max_length=100)
     end_time = models.CharField(max_length=100, null=True, blank=True)
     title = models.CharField(max_length=300)
-    img = models.CharField(max_length=100)
+    img = models.ImageField(upload_to=".")
     created_at = models.DateTimeField(auto_now_add=True)

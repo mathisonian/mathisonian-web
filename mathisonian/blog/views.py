@@ -13,15 +13,15 @@ def home(request):
                             context_instance=RequestContext(request))
 
 
-def post(request, post_id):
-    post = get_object_or_404(Post, pk=post_id)
+def post(request, post_slug):
+    post = get_object_or_404(Post, slug=post_slug)
     return render_to_response('post.jade',
                             {'post': post},
                             context_instance=RequestContext(request))
 
 
 def create_post(request):
-    if request.method == 'POST' and request.POST['pw'] == 'fuckthisgayearth':
+    if request.method == 'POST' and request.POST['pw'] == '':
 
         form = PostForm(request.POST)
 

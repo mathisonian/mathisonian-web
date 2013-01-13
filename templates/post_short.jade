@@ -1,14 +1,14 @@
 .row
   .eight.columns
     h3
-      a(href="#{post.pk}")
+      a(href="#{post.slug}")
         #{post.title}
     h5.blog-time
       | #{post.created_at}
     .description
       !{post.content|safe|truncatewords_html:100}
       {% ifnotequal post.content|truncatewords_html:100|length post.content|truncatewords_html:1011|length %}
-      a(href="#{post.pk}", style="text-align:right;")
+      a(href="#{post.slug}", style="text-align:right;")
         | Read More &rarr;
       {% endifnotequal %}
   .one.columns

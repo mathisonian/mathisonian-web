@@ -3,7 +3,7 @@ extends base
 block post-header
   a(href="/weblog") /weblog
   a(href="")
-    | /#{post.title|truncatechars:10}
+    | /#{post.slug|truncatechars:10}
 
 block content
   .row.content
