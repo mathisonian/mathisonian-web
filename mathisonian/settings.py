@@ -43,25 +43,26 @@ DATABASES = {
     }
 }
 
-if LOCAL:
-    DOMAIN = 'localhost:8000'
-    DEBUG_FILENAME = 'mathisonian-local-debug.log'
-    VERSION += " (Local)"
-    DATABASES['default'] = DATABASES['local']
+# if LOCAL:
+#     DOMAIN = 'localhost:8000'
+#     DEBUG_FILENAME = 'mathisonian-local-debug.log'
+#     VERSION += " (Local)"
+#     DATABASES['default'] = DATABASES['local']
 
-    # precompilation will run every time otherwise
-    COMPRESS_ENABLED = True
-    COMPRESS_MTIME_DELAY = 0
+#     # precompilation will run every time otherwise
+#     COMPRESS_ENABLED = True
+#     COMPRESS_MTIME_DELAY = 0
 
-    # Use the django db for dev, but do something better for
-    # production, you know what I'm sayin'?
-    BROKER_URL = 'django://'
+#     # Use the django db for dev, but do something better for
+#     # production, you know what I'm sayin'?
+#     BROKER_URL = 'django://'
 
-else:
-    DOMAIN = 'domain'
-    DEBUG_FILENAME = 'mathisonian-debug.log'
-    VERSION += " (Production)"
-    DATABASES['default'] = DATABASES['production']
+# else:
+DOMAIN = 'www.mathisonian.com'
+DEBUG_FILENAME = 'mathisonian-debug.log'
+VERSION += " (Production)"
+import dj_database_url
+DATABASES['default'] = dj_database_url.config()
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
