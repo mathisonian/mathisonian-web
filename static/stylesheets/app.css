@@ -95,13 +95,13 @@ html, body {
 .navigation {
 	z-index : 20;
 }
-.slides_container {
+.welcome {
 	margin-top : 60px;
 	width:750px;
 	height : 350px;
 /*	z-index : -99;*/
 }
-.slides_container div {
+.welcome div {
 	width:750px;
 	height : 350px;
 	display:block;

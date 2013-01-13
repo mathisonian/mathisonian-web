@@ -2,10 +2,14 @@
 .row.single-post
   .eight.columns
     h3
-      a(href="", target="_blank")
+      a(href="")
         #{post.title}
     h5.blog-time
       | #{post.created_at}
     .description
       !{post.content|safe}
+
+    .go-back.description
+      a(href="/weblog")
+        | &larr; Return
   .one.columns
