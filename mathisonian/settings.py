@@ -6,6 +6,7 @@ import djcelery
 djcelery.setup_loader()
 
 PROJECT_PATH = os.path.realpath(os.path.join(os.path.dirname(__file__), os.path.pardir))
+# PROJECT_PATH = ""
 
 VERSION = '0.1'
 
