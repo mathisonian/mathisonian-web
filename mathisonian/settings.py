@@ -182,6 +182,7 @@ INSTALLED_APPS = (
     'djcelery',
     'djkombu',
     'django.contrib.humanize',
+    'storages',
 )
 
 # A sample logging configuration. The only tangible logging
