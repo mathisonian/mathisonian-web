@@ -178,7 +178,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'widget_tweaks',
-    'compressor',
+    # 'compressor',
     'djcelery',
     'djkombu',
     'django.contrib.humanize',
@@ -222,12 +222,12 @@ TEMPLATE_CONTEXT_PROCESSORS = [
   'django.contrib.messages.context_processors.messages'
 ]
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'mathisonian-cache'
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#         'LOCATION': 'mathisonian-cache'
+#     }
+# }
 
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.BCryptPasswordHasher',
@@ -238,12 +238,12 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.CryptPasswordHasher',
 )
 
-COMPRESS_PRECOMPILERS = (
-#    ('text/coffeescript', 'coffee --compile --stdio'),
-#    ('text/less', 'lessc {infile} {outfile}'),
-#    ('text/x-sass', 'sass {infile} {outfile}'),
-    ('text/x-scss', 'sass --compass --scss {infile} {outfile}'),
-)
+# COMPRESS_PRECOMPILERS = (
+# #    ('text/coffeescript', 'coffee --compile --stdio'),
+# #    ('text/less', 'lessc {infile} {outfile}'),
+# #    ('text/x-sass', 'sass {infile} {outfile}'),
+#     ('text/x-scss', 'sass --compass --scss {infile} {outfile}'),
+# )
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 AUTH_PROFILE_MODULE = 'account.UserProfile'
@@ -261,11 +261,20 @@ http://django-social-auth.readthedocs.org/en/latest/configuration.html
 TODO: Make apps and api key shit
 '''
 AUTHENTICATION_BACKENDS = (
-    'social_auth.backends.twitter.TwitterBackend',
-    'social_auth.backends.facebook.FacebookBackend',
-    'social_auth.backends.contrib.github.GithubBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'mathisonian-web'
+STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+
+
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
 
 #
 # APPLICATION

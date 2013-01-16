@@ -1,12 +1,11 @@
-{% load compress %}
 !!! 5
 html
     head
-        {% compress css %}
+        //- {% compress css %}
         link(rel='stylesheet', type='text/css', href='#{STATIC_URL}stylesheets/foundation.css')
         link(rel='stylesheet', type='text/css', href='#{STATIC_URL}stylesheets/app.css')
         link(rel='stylesheet', type='text/css', href='#{STATIC_URL}stylesheets/redactor.css')
-        {% endcompress %}
+        //- {% endcompress %}
         link(rel='icon', href='#{STATIC_URL}favicon.ico')
         script(src="#{STATIC_URL}javascripts/modernizr.foundation.js")
 
