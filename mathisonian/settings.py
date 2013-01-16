@@ -15,6 +15,8 @@ FORCE_SCRIPT_NAME = ''
 LOCAL = os.environ.get('DJANGO_LOCAL', 'False') == 'True'
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
+DEBUG = False
+
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -178,7 +180,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'widget_tweaks',
-    # 'compressor',
+    'compressor',
     'djcelery',
     'djkombu',
     'django.contrib.humanize',
@@ -239,12 +241,12 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.CryptPasswordHasher',
 )
 
-# COMPRESS_PRECOMPILERS = (
-# #    ('text/coffeescript', 'coffee --compile --stdio'),
-# #    ('text/less', 'lessc {infile} {outfile}'),
-# #    ('text/x-sass', 'sass {infile} {outfile}'),
-#     ('text/x-scss', 'sass --compass --scss {infile} {outfile}'),
-# )
+COMPRESS_PRECOMPILERS = (
+#    ('text/coffeescript', 'coffee --compile --stdio'),
+#    ('text/less', 'lessc {infile} {outfile}'),
+#    ('text/x-sass', 'sass {infile} {outfile}'),
+    ('text/x-scss', 'sass --compass --scss {infile} {outfile}'),
+)
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 AUTH_PROFILE_MODULE = 'account.UserProfile'
