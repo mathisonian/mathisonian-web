@@ -1,11 +1,12 @@
+{% load compress %}
 !!! 5
 html
     head
-        //- {% compress css %}
+        {% compress css %}
         link(rel='stylesheet', type='text/css', href='#{STATIC_URL}stylesheets/foundation.css')
         link(rel='stylesheet', type='text/css', href='#{STATIC_URL}stylesheets/app.css')
         link(rel='stylesheet', type='text/css', href='#{STATIC_URL}stylesheets/redactor.css')
-        //- {% endcompress %}
+        {% endcompress %}
         link(rel='icon', href='#{STATIC_URL}favicon.ico')
         script(src="#{STATIC_URL}javascripts/modernizr.foundation.js")
 
@@ -31,11 +32,11 @@ html
         block content
         block pre-footer
         block footer
-            //- {% compress js %}
+            {% compress js %}
             script(src="#{STATIC_URL}javascripts/jquery.min.js")
             script(src="#{STATIC_URL}javascripts/slides.min.jquery.js")
             script(src="#{STATIC_URL}javascripts/foundation.min.js")
             script(src="#{STATIC_URL}javascripts/redactor.min.js")
             script(src='#{STATIC_URL}javascripts/app.js')
-            //- {% endcompress %}
+            {% endcompress %}
         block post-footer
