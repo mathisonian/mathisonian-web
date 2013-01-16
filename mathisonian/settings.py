@@ -241,12 +241,12 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.CryptPasswordHasher',
 )
 
-COMPRESS_PRECOMPILERS = (
-#    ('text/coffeescript', 'coffee --compile --stdio'),
-#    ('text/less', 'lessc {infile} {outfile}'),
-#    ('text/x-sass', 'sass {infile} {outfile}'),
-    ('text/x-scss', 'sass --compass --scss {infile} {outfile}'),
-)
+# COMPRESS_PRECOMPILERS = (
+# #    ('text/coffeescript', 'coffee --compile --stdio'),
+# #    ('text/less', 'lessc {infile} {outfile}'),
+# #    ('text/x-sass', 'sass {infile} {outfile}'),
+#     ('text/x-scss', 'sass --compass --scss {infile} {outfile}'),
+# )
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 AUTH_PROFILE_MODULE = 'account.UserProfile'
