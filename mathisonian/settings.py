@@ -225,12 +225,12 @@ TEMPLATE_CONTEXT_PROCESSORS = [
   'django.contrib.messages.context_processors.messages'
 ]
 
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-#         'LOCATION': 'mathisonian-cache'
-#     }
-# }
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'mathisonian-cache'
+    }
+}
 
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.BCryptPasswordHasher',
