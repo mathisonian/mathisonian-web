@@ -1,0 +1,11 @@
+extends base
+
+block content
+  .row.content
+    .twelve.columns
+      canvas(data-processing-sources="#{STATIC_URL}processing/particles.pde")
+
+    include navigation
+
+block post-footer
+    script(src="#{STATIC_URL}javascripts/processing.min.js")

@@ -15,7 +15,7 @@ FORCE_SCRIPT_NAME = ''
 LOCAL = os.environ.get('DJANGO_LOCAL', 'False') == 'True'
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
-DEBUG = False
+# DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -36,36 +36,36 @@ DATABASES = {
     #     'PORT': '3306'
     # },
 
-    # 'local': {
-    #     'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-    #     'NAME': 'mathisonian.db',                    # Or path to database file if using sqlite3.
-    #     'USER': '',                             # Not used with sqlite3.
-    #     'PASSWORD': '',                         # Not used with sqlite3.
-    #     'HOST': '',                             # Set to empty string for localhost. Not used with sqlite3.
-    #     'PORT': ''                              # Set to empty string for default. Not used with sqlite3.
-    # }
+    'local': {
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'mathisonian.db',                    # Or path to database file if using sqlite3.
+        'USER': '',                             # Not used with sqlite3.
+        'PASSWORD': '',                         # Not used with sqlite3.
+        'HOST': '',                             # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': ''                              # Set to empty string for default. Not used with sqlite3.
+    }
 }
 
-# if LOCAL:
-#     DOMAIN = 'localhost:8000'
-#     DEBUG_FILENAME = 'mathisonian-local-debug.log'
-#     VERSION += " (Local)"
-#     DATABASES['default'] = DATABASES['local']
+if LOCAL:
+    DOMAIN = 'localhost:8000'
+    DEBUG_FILENAME = 'mathisonian-local-debug.log'
+    VERSION += " (Local)"
+    DATABASES['default'] = DATABASES['local']
 
-#     # precompilation will run every time otherwise
-#     COMPRESS_ENABLED = True
-#     COMPRESS_MTIME_DELAY = 0
+    # precompilation will run every time otherwise
+    COMPRESS_ENABLED = True
+    COMPRESS_MTIME_DELAY = 0
 
-#     # Use the django db for dev, but do something better for
-#     # production, you know what I'm sayin'?
-#     BROKER_URL = 'django://'
+    # Use the django db for dev, but do something better for
+    # production, you know what I'm sayin'?
+    BROKER_URL = 'django://'
 
-# else:
-DOMAIN = 'www.mathisonian.com'
-DEBUG_FILENAME = 'mathisonian-debug.log'
-VERSION += " (Production)"
-import dj_database_url
-DATABASES['default'] = dj_database_url.config()
+else:
+    DOMAIN = 'www.mathisonian.com'
+    DEBUG_FILENAME = 'mathisonian-debug.log'
+    VERSION += " (Production)"
+    import dj_database_url
+    DATABASES['default'] = dj_database_url.config()
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -272,7 +272,7 @@ AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'mathisonian-web'
 STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
-MEDIA_URL = STATIC_URL
+# MEDIA_URL = STATIC_URL
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 AWS_QUERYSTRING_AUTH = False
 
