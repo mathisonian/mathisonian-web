@@ -13,7 +13,7 @@ VERSION = '0.1'
 FORCE_SCRIPT_NAME = ''
 
 LOCAL = os.environ.get('DJANGO_LOCAL', 'False') == 'True'
-DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
+DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
 # DEBUG = False
 
