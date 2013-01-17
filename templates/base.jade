@@ -1,13 +1,13 @@
-{% load compress %}
+//- {% load compress %}
 !!! 5
 html
     head
-        {% compress css %}
+        //- {% compress css %}
         link(rel='stylesheet', type='text/css', href='#{STATIC_URL}stylesheets/foundation.css')
         link(rel='stylesheet', type='text/css', href='#{STATIC_URL}stylesheets/app.css')
         link(rel='stylesheet', type='text/css', href='#{STATIC_URL}stylesheets/redactor.css')
+        //- {% endcompress %}
         link(rel='icon', href='#{STATIC_URL}favicon.ico')
-        {% endcompress %}
         script(src="#{STATIC_URL}javascripts/modernizr.foundation.js")
 
         //if lt IE 9
@@ -21,7 +21,7 @@ html
         link(href='http://fonts.googleapis.com/css?family=Monda', rel='stylesheet', type='text/css')
         title
             block title
-                #{title}
+                | Mathisonian
     body
         block header
           .container

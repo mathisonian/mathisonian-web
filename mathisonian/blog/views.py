@@ -1,3 +1,4 @@
+import os
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from mathisonian.blog.models import Post
@@ -21,7 +22,7 @@ def post(request, post_slug):
 
 
 def create_post(request):
-    if request.method == 'POST' and request.POST['pw'] == '':
+    if request.method == 'POST' and request.POST['pw'] == os.environ.get('MATHISONIAN_BLOG_PW'):
 
         form = PostForm(request.POST)
 

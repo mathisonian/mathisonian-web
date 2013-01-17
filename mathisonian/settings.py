@@ -6,6 +6,7 @@ import djcelery
 djcelery.setup_loader()
 
 PROJECT_PATH = os.path.realpath(os.path.join(os.path.dirname(__file__), os.path.pardir))
+# PROJECT_PATH = ""
 
 VERSION = '0.1'
 
@@ -13,6 +14,8 @@ FORCE_SCRIPT_NAME = ''
 
 LOCAL = os.environ.get('DJANGO_LOCAL', 'False') == 'True'
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
+
+# DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -24,14 +27,14 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
-    'production': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mathisonian',
-        'USER': 'mathisonian',
-        'PASSWORD': 'mathisonian',
-        'HOST': '127.0.0.1',
-        'PORT': '3306'
-    },
+    # 'production': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'mathisonian',
+    #     'USER': 'mathisonian',
+    #     'PASSWORD': 'mathisonian',
+    #     'HOST': '127.0.0.1',
+    #     'PORT': '3306'
+    # },
 
     'local': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -58,10 +61,11 @@ if LOCAL:
     BROKER_URL = 'django://'
 
 else:
-    DOMAIN = 'domain'
+    DOMAIN = 'www.mathisonian.com'
     DEBUG_FILENAME = 'mathisonian-debug.log'
     VERSION += " (Production)"
-    DATABASES['default'] = DATABASES['production']
+    import dj_database_url
+    DATABASES['default'] = dj_database_url.config()
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -176,10 +180,11 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'widget_tweaks',
-    'compressor',
+    # 'compressor',
     'djcelery',
     'djkombu',
     'django.contrib.humanize',
+    'storages',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -220,12 +225,12 @@ TEMPLATE_CONTEXT_PROCESSORS = [
   'django.contrib.messages.context_processors.messages'
 ]
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'mathisonian-cache'
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#         'LOCATION': 'mathisonian-cache'
+#     }
+# }
 
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.BCryptPasswordHasher',
@@ -236,12 +241,12 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.CryptPasswordHasher',
 )
 
-COMPRESS_PRECOMPILERS = (
-#    ('text/coffeescript', 'coffee --compile --stdio'),
-#    ('text/less', 'lessc {infile} {outfile}'),
-#    ('text/x-sass', 'sass {infile} {outfile}'),
-    ('text/x-scss', 'sass --compass --scss {infile} {outfile}'),
-)
+# COMPRESS_PRECOMPILERS = (
+# #    ('text/coffeescript', 'coffee --compile --stdio'),
+# #    ('text/less', 'lessc {infile} {outfile}'),
+# #    ('text/x-sass', 'sass {infile} {outfile}'),
+#     ('text/x-scss', 'sass --compass --scss {infile} {outfile}'),
+# )
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 AUTH_PROFILE_MODULE = 'account.UserProfile'
@@ -259,11 +264,21 @@ http://django-social-auth.readthedocs.org/en/latest/configuration.html
 TODO: Make apps and api key shit
 '''
 AUTHENTICATION_BACKENDS = (
-    'social_auth.backends.twitter.TwitterBackend',
-    'social_auth.backends.facebook.FacebookBackend',
-    'social_auth.backends.contrib.github.GithubBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'mathisonian-web'
+STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
+# MEDIA_URL = STATIC_URL
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+AWS_QUERYSTRING_AUTH = False
+
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
 
 #
 # APPLICATION
