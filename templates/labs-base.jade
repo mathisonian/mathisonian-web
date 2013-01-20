@@ -1,9 +1,15 @@
 extends base
 
+block post-header
+  a(href="")
+    |/labs
+
 block content
   .row.content
-    .twelve.columns
-      canvas(data-processing-sources="#{STATIC_URL}processing/particles.pde")
+    .ten.columns
+      .row
+        .twelve.columns.welcome
+          canvas(data-processing-sources="particles.pde")
 
     include navigation
 

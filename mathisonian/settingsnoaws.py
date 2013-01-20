@@ -268,16 +268,17 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'mathisonian-web'
-STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
-MEDIA_URL = STATIC_URL
-ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
-AWS_QUERYSTRING_AUTH = False
 
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = 's3.mathisonian.com'
+# STATIC_URL = 'http://' + 's3.mathisonian.com/'
+# MEDIA_URL = STATIC_URL
+# ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+# AWS_QUERYSTRING_AUTH = False
+
+# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 
 #

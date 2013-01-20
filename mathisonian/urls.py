@@ -3,6 +3,9 @@ from django.conf import settings
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
+import os
+
+PROJECT_PATH = os.path.realpath(os.path.join(os.path.dirname(__file__), os.path.pardir))
 
 urlpatterns = patterns('',
     url(r'', include('mathisonian.base.urls')),
@@ -20,5 +23,6 @@ urlpatterns = patterns('',
 
 # if settings.LOCAL:
 urlpatterns += patterns('',
-    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT})
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT})
 )
