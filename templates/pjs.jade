@@ -1,0 +1,31 @@
+extends base
+
+block post-header
+    a(href="") /labs
+    a(href="") 
+        |/processing
+
+block content
+    .row.content.portfolio-container
+        .ten.columns
+            .row
+                .twelve.columns
+                    h3
+                        | Try Processing.js in your browser
+            .row
+                .three.columns
+                    h4
+                        a(href="/labs/processing/2d")
+                            | 2D
+                        br
+                        a(href="/labs/processing/3d")
+                            | 3D
+            .row
+                .twelve.columns.welcome
+                    canvas(data-processing-sources="/labs/particles.pde")
+                    
+
+        include navigation
+
+block post-footer
+    script(src="#{STATIC_URL}javascripts/processing.min.js")

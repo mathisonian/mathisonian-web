@@ -268,3 +268,19 @@ canvas {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0); /* mobile webkit */
 }
 
+.margin-top {
+    margin-top: 50px;
+}
+
+
+.sketch {
+    width: 298px;
+    height: 298px;
+}
+
+.error-span {
+    color: red;
+    font-size: 20px;
+    font-family: monospace;
+    margin-top: 10px;
+}

@@ -1,0 +1,46 @@
+extends pjs-editor
+
+block post-header
+    a(href="/labs") /labs
+    a(href="/labs/processing") /processing
+    a(href="")
+        | /3d
+
+block editor
+    textarea.code-editor#code-editor(style="display:none;").
+        // Declare persist variables here
+        //
+        // e.g. frameCount = 0;
+        //
+        // Hint - comment out these 
+        // declarations after they've been declared so
+        // the sketch doesn't keep reseting the values
+        steps = 250;
+        curStep = 0;
+         
+        // This function gets called
+        // every frame
+        p.draw = function() {
+            try {
+                //
+                // Replace this with your own code
+                //
+                p.noStroke();
+                p.background(0, 0, 0, 0);
+                p.lights();
+                p.translate(p.width/2,
+                          p.height/2, 0);
+                p.rotateX(2*p.PI / steps * curStep++);
+                p.rotateY(-p.PI/3 +
+                        210 / p.height * p.PI);
+                p.box(45);
+                p.translate(0,0, -50);
+                p.box(30);
+                p.translate(0, 0, -35);
+                p.box(17);
+            } catch(e) {
+                displayError(e);
+            }
+        }
+block canvas
+    canvas#sketch3d.sketch

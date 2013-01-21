@@ -20,7 +20,7 @@ void setup() {
   float widthFactor = 2;
   float heightFactor = 1.5;
 
-  size(img.width * 2.5, img.height * 2.5, P2D);
+  size(img.width * 2.5, img.height * 1.5, P2D);
   // background(255);
   // image(img, (width - img.width) / 2, (height - img.height) / 2);
   color c;
