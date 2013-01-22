@@ -1,17 +1,17 @@
 extends base
 
 block post-header
-  a(href="")
-    |/labs
+    a(href="")
+        |/labs
 
 block content
-  .row.content
-    .ten.columns
-      .row
-        .twelve.columns.welcome
-          canvas(data-processing-sources="particles.pde")
+    .row.content
+        .ten.columns
+            .row
+                .twelve.columns.welcome
+                    canvas(data-processing-sources="particles.pde")
 
-    include navigation
+        include navigation
 
 block post-footer
     script(src="#{STATIC_URL}javascripts/processing.min.js")

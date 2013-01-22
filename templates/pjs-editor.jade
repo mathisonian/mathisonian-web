@@ -1,0 +1,21 @@
+extends labs-base
+
+block post-head-includes
+    script(src="#{STATIC_URL}javascripts/codemirror/lib/codemirror.js")
+    link(rel="stylesheet", href="#{STATIC_URL}stylesheets/codemirror.css")
+    script(src="#{STATIC_URL}javascripts/codemirror/mode/javascript/javascript.js")
+
+block post-header
+    a(href="/labs") /labs
+    a(href="")
+        | /processing
+
+
+block content
+    .row.content.margin-top
+        .eight.columns
+            block editor
+            .error-span
+                | Evaluate With Ctrl+Enter
+        .four.columns
+            block canvas

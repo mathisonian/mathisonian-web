@@ -1,0 +1,33 @@
+extends pjs-editor
+
+block post-header
+    a(href="/labs") /labs
+    a(href="/labs/processing") /processing
+    a(href="")
+        | /2d
+
+block editor
+    textarea.code-editor#code-editor(style="display:none;").
+        // Declare persist variables here
+        //
+        //
+        // Hint - comment out these 
+        // declarations after they've been declared so
+        // the sketch doesn't keep reseting the values
+        i = 0;         
+         
+        // This function gets called
+        // every frame
+        p.draw = function() {
+            try {
+                //
+                // Replace this with your own code
+                //
+                p.background(0, 255 * p.pow(p.sin(i), 2));
+                i += 0.01;
+            } catch(e) {
+                displayError(e);
+            }
+        };
+block canvas
+    canvas#sketch2d.sketch
