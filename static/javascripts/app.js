@@ -153,7 +153,13 @@ jQuery(document).ready(function ($) {
 
     var updateCanvas = function() {
         try {
-            eval(editor.getValue());
+            $('.error-span').text("");
+            var selection = $.trim(editor.getSelection());
+            if(selection !== "") {
+                eval(editor.getSelection());
+            } else {
+                eval(editor.getValue());
+            }
             $('.error-span').text("success!");
         } catch(e) {
             $('.error-span').text(e.message);
@@ -173,7 +179,7 @@ jQuery(document).ready(function ($) {
     /* DISABLED BUTTONS ------------- */
     /* Gives elements with a class of 'disabled' a return: false; */
 
-    if(CodeMirror) {
+    if(typeof CodeMirror !== undefined) {
         var editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
             mode: "javascript",
             lineNumbers: true,

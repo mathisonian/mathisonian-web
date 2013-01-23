@@ -284,3 +284,9 @@ canvas {
     font-family: monospace;
     margin-top: 10px;
 }
+
+.instruction-span {
+    font-size: 20px;
+    font-family: monospace;
+    margin-top: 10px;
+}
