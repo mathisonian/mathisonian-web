@@ -39,7 +39,7 @@ class Sketch(models.Model):
         return int_str(chaffify(self.pk), settings.URL_KEYSPACE)
 
     def create_version(self, content):
-        version_number = 1
+        version_number = 0
 
         if self.current_version:
             version_number = self.current_version.version_number + 1
