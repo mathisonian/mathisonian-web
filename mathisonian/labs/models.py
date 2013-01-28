@@ -1,13 +1,17 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.http import Http404
+from mathisonian.labs.utils import str_int, dechaffify, int_str, chaffify
+from django.conf import settings
 
 
 class SketchManager(models.Manager):
     def create(self, content, parent=None):
         """ Automatically attach the first draft to a new post. """
         sketch = super(SketchManager, self).create(parent=parent)
-        sketch.create_version(content=content)
+        version = sketch.create_version(content=content)
+        sketch.current_version = version
+        sketch.save()
 
         return sketch
 
@@ -17,21 +21,34 @@ class Sketch(models.Model):
     parent = models.ForeignKey('Sketch', blank=True, null=True)
     current_version = models.ForeignKey('Version', blank=True, null=True, default=None, related_name="sketch_current_version")
 
-    def save(self, *args, **kwargs):
-        if not self.id:
-            # Newly created object, so create version 1
-            self.slug = slugify(self.title)
+    objects = SketchManager()
 
-        super(Sketch, self).save(*args, **kwargs)
+    @staticmethod
+    def get_from_encoded_id(encoded_id):
+        pk = dechaffify(str_int(encoded_id, settings.URL_KEYSPACE))
+        return Sketch.objects.get(pk=pk)
+
+    @staticmethod
+    def get_from_encoded_id_or_404(encoded_id):
+        try:
+            return Sketch.get_from_encoded_id(encoded_id=encoded_id)
+        except Version.DoesNotExist:
+            raise Http404
+
+    def get_encoded_id(self):
+        return int_str(chaffify(self.pk), settings.URL_KEYSPACE)
 
     def create_version(self, content):
-        version_number = 0
+        version_number = 1
 
-        if self.current_draft:
+        if self.current_version:
             version_number = self.current_version.version_number + 1
 
         version = Version(content=content, version_number=version_number, sketch=self)
         version.save()
+
+        self.current_version = version
+        self.save()
 
         return version
 
@@ -53,7 +70,7 @@ class Sketch(models.Model):
 
 class Version(models.Model):
     content = models.TextField()
-    version_number = models.IntegerField()
+    version_number = models.IntegerField(default=0)
     sketch = models.ForeignKey(Sketch)
     date_created = models.DateTimeField(auto_now_add=True)
 

@@ -1,6 +1,44 @@
 /* Foundation v2.2.1 http://foundation.zurb.com */
 jQuery(document).ready(function ($) {
+      $.ajaxSetup({ traditional: true });
 
+      // csrf token support
+      $(document).ajaxSend(function(event, xhr, settings) {
+          function getCookie(name) {
+              var cookieValue = null;
+              if (document.cookie && document.cookie != '') {
+                  var cookies = document.cookie.split(';');
+                  for (var i = 0; i < cookies.length; i++) {
+                      var cookie = jQuery.trim(cookies[i]);
+                      // Does this cookie string begin with the name we want?
+                      if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                          break;
+                      }
+                  }
+              }
+              return cookieValue;
+          }
+          function sameOrigin(url) {
+              // url could be relative or scheme relative or absolute
+              var host = document.location.host; // host + port
+              var protocol = document.location.protocol;
+              var sr_origin = '//' + host;
+              var origin = protocol + sr_origin;
+              // Allow absolute or scheme relative URLs to same origin
+              return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+                  (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+                  // or any other URL that isn't scheme relative or absolute i.e relative.
+                  !(/^(\/\/|http:|https:).*/.test(url));
+          }
+          function safeMethod(method) {
+              return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+          }
+
+          if (!safeMethod(settings.type) && sameOrigin(settings.url)) {
+              xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+          }
+      });
 
     $("#slides").slides();
 
@@ -47,6 +85,11 @@ jQuery(document).ready(function ($) {
         $(this).remove();
       });
     });
+
+
+    var cleanURL = function(url) {
+      return url.replace(/\/\/+/g,'\/');
+    };
 
 
     /* PLACEHOLDER FOR FORMS ------------- */
@@ -108,45 +151,57 @@ jQuery(document).ready(function ($) {
     var initSketch2d = function(p) {
         p.setup = function() {
             p.size($(".sketch").width(), $(".sketch").height());
+            if(typeof p.init === 'function') {
+              p.init();
+            }
         };
-        i = 0;
-        p.draw = function() {
+
+        if (sketchContent) {
+            eval(sketchContent);
+        } else {
+          i=0;
+          p.draw = function() {
             p.background(0, 255 * p.pow(p.sin(i), 2));
             i += 0.01;
-        };
+          };
+        }
+        
     };
 
     var initSketch3d = function(p) {
+
         p.setup = function() {
             p.size($(".sketch").width(), $(".sketch").height(), p.OPENGL);
-        };
-        // Declare persist variables here
-        //
-        // e.g. frameCount = 0;
-        steps = 250;
-        curStep = 0;
-         
-        // This function gets called
-        // every frame
-        p.draw = function() {
-            try {
-              p.noStroke();
-              p.background(0, 0, 0, 0);
-              p.lights();
-              p.translate(p.width/2,
-                          p.height/2, 0);
-              p.rotateX(2*p.PI / steps * curStep++);
-              p.rotateY(-p.PI/3 +
-                        210 / p.height * p.PI);
-              p.box(45);
-              p.translate(0,0, -50);
-              p.box(30);
-              p.translate(0, 0, -35);
-              p.box(17);
-            } catch(e) {
-                displayError(e);
+            if(typeof p.init === 'function') {
+              p.init();
             }
         };
+        if (sketchContent) {
+            eval(sketchContent);
+        } else {
+            // This function gets called
+            // every frame
+            steps=250; curStep=0;
+            p.draw = function() {
+                try {
+                  p.noStroke();
+                  p.background(0, 0, 0, 0);
+                  p.lights();
+                  p.translate(p.width/2,
+                              p.height/2, 0);
+                  p.rotateX(2*p.PI / steps * curStep++);
+                  p.rotateY(-p.PI/3 +
+                            210 / p.height * p.PI);
+                  p.box(45);
+                  p.translate(0,0, -50);
+                  p.box(30);
+                  p.translate(0, 0, -35);
+                  p.box(17);
+                } catch(e) {
+                    displayError(e);
+                }
+            };
+        }
     };
 
     var p;
@@ -167,19 +222,78 @@ jQuery(document).ready(function ($) {
     };
 
     var canvas = document.getElementById("sketch2d");
+    var has_canvas=false;
     if(canvas) {
         p = new Processing(canvas, initSketch2d);
+        has_canvas=true;
     } else {
         canvas = document.getElementById("sketch3d");
         if(canvas) {
             p = new Processing(canvas, initSketch3d);
+            has_canvas=true;
         }
+    }
+
+    if(has_canvas) {
+        $('.save-sketch-3d').click(function() {
+          $.ajax({
+            type: "POST",
+            url: cleanURL('/labs/processing/create/3d/'),
+            data: {
+                content: editor.getValue()
+            },
+            success: function(data) {
+              window.location = "/labs/processing/3d/" + data.sketch_id;
+            }
+          });
+        });
+
+        $('.version-sketch-3d').click(function() {
+          $.ajax({
+            type: "POST",
+            url: cleanURL('/labs/processing/version/3d/'),
+            data: {
+                content: editor.getValue(),
+                sketch_id: sketch_id
+            },
+            success: function(data) {
+              window.location = "/labs/processing/3d/" + sketch_id + '/' + data.version_number;
+            }
+          });
+        });
+
+        $('.save-sketch-2d').click(function() {
+          $.ajax({
+            type: "POST",
+            url: cleanURL('/labs/processing/create/2d/'),
+            data: {
+                content: editor.getValue()
+            },
+            success: function(data) {
+              window.location = "/labs/processing/2d/" + data.sketch_id;
+            }
+          });
+        });
+
+        $('.version-sketch-3d').click(function() {
+          $.ajax({
+            type: "POST",
+            url: cleanURL('/labs/processing/version/2d/'),
+            data: {
+                content: editor.getValue(),
+                sketch_id: sketch_id
+            },
+            success: function(data) {
+              window.location = "/labs/processing/2d/" + sketch_id + '/' + data.version_number;
+            }
+          });
+        });
     }
 
     /* DISABLED BUTTONS ------------- */
     /* Gives elements with a class of 'disabled' a return: false; */
 
-    if(typeof CodeMirror !== undefined) {
+    if(typeof CodeMirror !== 'undefined') {
         var editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
             mode: "javascript",
             lineNumbers: true,

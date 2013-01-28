@@ -7,27 +7,41 @@ block post-header
         | /2d
 
 block editor
-    textarea.code-editor#code-editor(style="display:none;").
-        // Declare persist variables here
-        //
-        //
-        // Hint - comment out these 
-        // declarations after they've been declared so
-        // the sketch doesn't keep reseting the values
-        i = 0;         
-         
-        // This function gets called
-        // every frame
-        p.draw = function() {
-            try {
-                //
-                // Replace this with your own code
-                //
-                p.background(0, 255 * p.pow(p.sin(i), 2));
-                i += 0.01;
-            } catch(e) {
-                displayError(e);
-            }
-        };
+    textarea.code-editor#code-editor(style="display:none;")
+        - if version
+            #{version.content}
+        - else
+            | // Declare initial variables in here.
+            | // This is called as a callback at
+            | // the end of setup(). It only gets called
+            | // on page load
+            | p.init = function() {
+            |   i = 250;
+            | }
+
+            | 
+            | // This function gets called
+            | // every frame
+            | p.draw = function() {
+            |     try {
+            |         //
+            |         // Replace this with your own code
+            |         //
+            |         p.background(0, 255 * p.pow(p.sin(i), 2));
+            |         i += 0.01;
+            |     } catch(e) {
+            |         displayError(e);
+            |     }
+            | };
+
+block save-buttons
+    .row.margin-top
+        .twelve.columns
+            .button.save-sketch-2d
+                | save
+            - if version
+                .button.version-sketch-2d
+                    | version
+
 block canvas
     canvas#sketch2d.sketch

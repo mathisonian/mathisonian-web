@@ -27,5 +27,8 @@ block content
 
         include navigation
 
-block post-footer
+block pre-footer
     script(src="#{STATIC_URL}javascripts/processing.min.js")
+    script
+        {% if version %}sketchContent = "#{version.content|escapejs}"{%else%}sketchContent = false{%endif%}
+        {% if version %}sketch_id = "#{sketch_id|escapejs}"{%else%}sketch_id = false{%endif%}

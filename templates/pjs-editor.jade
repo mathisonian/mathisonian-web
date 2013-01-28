@@ -1,4 +1,4 @@
-extends labs-base
+extends pjs
 
 block post-head-includes
     script(src="#{STATIC_URL}javascripts/codemirror/lib/codemirror.js")
@@ -26,5 +26,9 @@ block content
                 | Either current selection or
                 br
                 | entire script will be executed
+
+
+                block save-buttons
         .four.columns
             block canvas
+
