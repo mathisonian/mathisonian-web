@@ -6,6 +6,7 @@ from mathisonian.labs.models import Sketch
 from mathisonian.labs.forms import Create, NewVersion
 from django.utils import simplejson
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
 def home(request):
@@ -44,6 +45,7 @@ def processing3d(request, sketch_id=None, version_id=None):
                             context_instance=RequestContext(request))
 
 
+@csrf_exempt
 def save_3d_sketch(request):
     if request.method == 'POST':
         form = Create(request.POST)
@@ -63,6 +65,7 @@ def save_3d_sketch(request):
                             context_instance=RequestContext(request))
 
 
+@csrf_exempt
 def version_3d_sketch(request):
     if request.method == 'POST':
         form = NewVersion(request.POST)
@@ -82,6 +85,7 @@ def version_3d_sketch(request):
                             context_instance=RequestContext(request))
 
 
+@csrf_exempt
 def save_2d_sketch(request):
     if request.method == 'POST':
         form = Create(request.POST)
@@ -101,6 +105,7 @@ def save_2d_sketch(request):
                             context_instance=RequestContext(request))
 
 
+@csrf_exempt
 def version_2d_sketch(request):
     if request.method == 'POST':
         form = NewVersion(request.POST)
