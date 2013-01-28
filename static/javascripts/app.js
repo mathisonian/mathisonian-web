@@ -265,7 +265,7 @@ $.ajaxSetup({
           });
         });
 
-        $('.version-sketch-3d').click(function() {
+        $('.version-sketch-2d').click(function() {
           $.ajax({
             type: "POST",
             url: cleanURL('/labs/processing/version/2d/'),
