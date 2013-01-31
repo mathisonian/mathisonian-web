@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 import os
+from mathisonian.blog.models import BlogFeed
 
 PROJECT_PATH = os.path.realpath(os.path.join(os.path.dirname(__file__), os.path.pardir))
 
@@ -21,8 +22,12 @@ urlpatterns = patterns('',
 )
 
 
+# Enable RSS!!!
+feeds = {'blog': BlogFeed}
+
 # if settings.LOCAL:
 urlpatterns += patterns('',
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
-    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT})
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+    (r'^feeds/weblog/?$', BlogFeed()),
 )
