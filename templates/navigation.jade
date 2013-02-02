@@ -1,20 +1,35 @@
 .two.columns.navigation
-    .row
-        .twelve.columns.nav
-            a(href="/portfolio")
-                | /portfolio
-    .row
-        .twelve.columns.nav
-            a(href="/weblog")
-                | /weblog
-    .row
-        .twelve.columns.nav
-            a(href="/about")
-                | /about
-    .row
-        .twelve.columns.nav
-            a(href="mailto:web@mathisonian.com")
-                | /contact
+    .hide-on-phones
+        .row
+            .twelve.columns.nav
+                a(href="/portfolio")
+                    | /portfolio
+        .row
+            .twelve.columns.nav
+                a(href="/weblog")
+                    | /weblog
+        .row
+            .twelve.columns.nav
+                a(href="/about")
+                    | /about
+        .row
+            .twelve.columns.nav
+                a(href="mailto:web@mathisonian.com")
+                    | /contact
+    .show-on-phones
+        .row
+            .phone-one.nav-phone
+                a(href="/portfolio")
+                    | /stuff
+            .phone-one.nav-phone
+                a(href="/weblog")
+                    | /blog
+            .phone-one.nav-phone
+                a(href="/about")
+                    | /me
+            .phone-one.nav-phone
+                a(href="/contact")
+                    | /email
     br
 
     .row

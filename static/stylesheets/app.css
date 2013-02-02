@@ -97,13 +97,13 @@ html, body {
 }
 .welcome {
 	margin-top : 60px;
-	width:750px;
-	height : 350px;
+	/*width:750px;*/
+	/*height : 350px;*/
 /*	z-index : -99;*/
 }
 .welcome div {
-	width:750px;
-	height : 350px;
+	/*width:750px;*/
+	/*height : 350px;*/
 	display:block;
 /*	z-index : -99;*/
 }
@@ -158,6 +158,16 @@ h5 {
 
 .nav > a:hover {
 	background-color: blue;
+}
+
+.nav-phone > a {
+  color : white;
+  background-color: fuchsia;
+  font-family: 'PT Mono', sans-serif;
+}
+
+.nav-phone > a:hover {
+  background-color: blue;
 }
 
 .welcome {

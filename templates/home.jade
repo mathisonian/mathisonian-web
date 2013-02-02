@@ -1,26 +1,32 @@
 extends base
 
 block content
-  .row.content
-    .ten.columns
-      .row
-        .twelve.columns.welcome
-          h3
-            | Welcome, friend
-          br
-          | This is the website of
-          a(href="/about")
-            | Matthew Conlen
-          br
-          | Sometimes
-          a(href="portfolio")
-            | I make things
-          br
-          br
-          | Feel free to look around or
-          a(href="mailto:web@mathisonian.com")
-             | contact me
-          br
-          | with any inquiries.
+  .container
+    .row.content
+      .ten.columns
+        .row
+          .twelve.columns.welcome
+            h3
+              | Welcome, friend
+            br
+            | This is the website of
+            a(href="/about")
+              | Matthew Conlen
+            br
+            | Sometimes
+            a(href="portfolio")
+              | I make things
+            br
+            br
+            | Current experiments are kept in the
+            a(href="labs")
+              | lab
+            br
+            br
+            | Feel free to look around or
+            a(href="mailto:web@mathisonian.com")
+               | contact me
+            br
+            | with any inquiries.
 
-    include navigation
+      include navigation
