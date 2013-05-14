@@ -4,7 +4,8 @@
     h3
       #{post.title}
     h5.blog-time
-      | #{post.created_at}
+      b
+        | #{post.created_at}
     .description
       !{post.content|safe}
 
