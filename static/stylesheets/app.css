@@ -185,6 +185,7 @@ h5 {
 /*	color : white;*/
 }
 
+
 .welcome > h3 {
 	font-size : 45px;
 	line-height : 47px;
@@ -299,4 +300,15 @@ canvas {
     font-size: 20px;
     font-family: monospace;
     margin-top: 10px;
+}
+
+
+.post h1,
+.post h2,
+.post h3,
+.post h4,
+.post h5,
+.post h6 {
+  margin-bottom: 10px;
+  font-family : subtle-light, sans-serif;
 }
