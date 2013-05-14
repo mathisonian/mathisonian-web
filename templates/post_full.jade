@@ -1,11 +1,13 @@
 
 .row.single-post
   .eight.columns.post
-    h3
-      #{post.title}
+    h2
+      | #{post.title}
     h5.blog-time
       b
         | #{post.created_at}
+    hr
+    br
     .description
       !{post.content|safe}
 
