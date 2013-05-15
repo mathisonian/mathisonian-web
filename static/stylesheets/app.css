@@ -322,4 +322,6 @@ pre {
   background: white;
   padding: 5px 10px;
   font-family: monospace;
+  border: 1px solid #ddd;
+  border-radius: 3px;
 }
