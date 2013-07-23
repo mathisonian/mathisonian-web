@@ -5,5 +5,6 @@ from django.views.generic.simple import direct_to_template
 
 urlpatterns = patterns('mathisonian.base.views',
     url(r'^$', r'home'),
-    url(r'^robots\.txt$', direct_to_template, {'template': 'robots.txt', 'mimetype': 'text/plain'})
+    url(r'^robots\.txt$', direct_to_template, {'template': 'robots.txt', 'mimetype': 'text/plain'}),
+    url(r'^resume$', direct_to_template, {'template': 'resume.html', 'mimetype': 'text/html'})
 )
