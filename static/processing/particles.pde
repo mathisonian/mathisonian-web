@@ -12,7 +12,7 @@ PVector leftTop, dimension;
 float skipFactor = 2;
 
 void setup() {
-  img = loadImage("http://mathisonian-web.s3.amazonaws.com/images/huffpost_tech_logo.jpg");
+  img = loadImage("http://mathisonian-web.s3.amazonaws.com/images/Hacker_Emblem.png");
   size(img.width, img.height, P2D);
   background(255);
   image(img, 0,0);

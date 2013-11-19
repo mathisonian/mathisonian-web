@@ -1,7 +1,7 @@
 
 ArrayList particles = new ArrayList();
 
-/* @pjs preload="/static/images/huffpost_tech_logo.jpg"; */
+/* @pjs preload="/static/images/Hacker_Emblem.png"; */
 /* @pjs transparent="true"; */
 PImage img;
 
@@ -15,7 +15,7 @@ float skipFactor = 3.5;
 float widthDiff, heightDiff;
 
 void setup() {
-  img = loadImage("/static/images/huffpost_tech_logo.jpg");
+  img = loadImage("/static/images/Hacker_Emblem.png");
   
   float widthFactor = 2;
   float heightFactor = 1.5;

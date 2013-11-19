@@ -9,3 +9,7 @@ class Project(models.Model):
     title = models.CharField(max_length=300)
     img = models.ImageField(upload_to=".")
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+    def __unicode__(self):
+        return u'%s' % self.title

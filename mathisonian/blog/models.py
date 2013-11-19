@@ -17,6 +17,11 @@ class Post(models.Model):
         super(Post, self).save(*args, **kwargs)
 
 
+    def __unicode__(self):
+        return u'%s' % self.title
+
+
+
 class Comment(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
