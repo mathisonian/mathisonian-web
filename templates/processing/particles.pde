@@ -11,7 +11,7 @@ PVector leftTop, dimension;
 // Increase this to add fewer particles.
 // Bigger number == less computationally
 // intensive
-float skipFactor = 3.5;
+float skipFactor = 2.5;
 float widthDiff, heightDiff;
 
 void setup() {
@@ -28,7 +28,7 @@ void setup() {
   for(int i = 0; i < img.width; i++) {
     for(int j = 0; j<img.height; j=round(j+skipFactor)) {
       c = img.get(i,j);
-      if(red(c) + green(c) + blue(c) < 250 * 3 ) {
+      if(alpha(c) > 0) {
           particles.add(new Particle(i, j, c));       
       }
     }
