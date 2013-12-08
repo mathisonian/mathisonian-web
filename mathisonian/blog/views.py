@@ -8,7 +8,11 @@ from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect
 
 
-def home(request, page=1):
+def home(request, page=-1):
+    page_parameter = page
+    if page < 1:
+        page = 1
+
     posts = Post.objects.all().order_by('-created_at')
 
     paginator = Paginator(posts, 4)
@@ -18,9 +22,9 @@ def home(request, page=1):
     except (InvalidPage, EmptyPage):
         posts = paginator.page(paginator.num_pages)
 
-
     return render_to_response('weblog.jade',
-                            {'posts': posts},
+                            {'posts': posts,
+                             'page_parameter': page_parameter},
                             context_instance=RequestContext(request))
 
 
