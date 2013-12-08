@@ -13,4 +13,14 @@ block content
             include post_short
             hr
 
+          .row
+            .twelve.columns.breathe-bottom
+              - for page in posts.paginator.page_range
+                span.page-number
+                  - if page == posts.number
+                    | #{page}
+                  - else
+                    a(href="/weblog/#{page}")
+                      | #{page}
+
     include navigation
