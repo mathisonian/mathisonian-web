@@ -327,7 +327,7 @@ canvas {
   background: white;
 }
 
-pre {
+pre.code {
   background: white;
   padding: 5px 10px;
   font-family: monospace;
@@ -335,9 +335,10 @@ pre {
   border-radius: 3px;
 }
 
-.gist{font-size:13px;line-height:18px;margin-bottom:20px;width:100%}
+.gist{font-size:13px;line-height:18px;margin-bottom:20px;width:100%; padding-top: 15px;}
 .gist pre{font-family:Menlo,Monaco,'Bitstream Vera Sans Mono','Courier New',monospace !important}
 .gist-meta{font-family:Helvetica,Arial,sans-serif;font-size:13px !important}
 .gist-meta a{color:#26a !important;text-decoration:none}
 .gist-meta a:hover{color:#0e4071 !important}
+.gist table{width: 100%; margin-bottom: 0;}
 
